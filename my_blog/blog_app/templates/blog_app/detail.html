@@ -1,0 +1,20 @@
+{% extends 'blog_app/layout.html' %}
+
+
+{% block content %}
+
+<p></p>
+<h2>{{ obj.title }} </h2>
+
+<form action="{% url 'blog_app:delete' num=obj.id  %}" method="POST">{% csrf_token %}
+    <input type="submit" class="btn btn-danger text-white" value="記事を削除"></input>
+</form>
+
+<p>{{ obj.created_datetime }}</p>
+<img src="{{ obj.img.url }}" class="img-fluid" alt="img"  width="1000" height="700">
+<br>
+<br>
+<p>{{ obj.content }}</p>
+
+<button type="button" class="btn btn-secondary"><a class="text-white" href="{% url 'blog_app:index' %}">戻る</a></button>
+{% endblock content %}
